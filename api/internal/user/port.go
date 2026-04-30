@@ -1,7 +1,9 @@
 package user
 
-// User port interface definition for depedency injection
+import "context"
+
+// UserRepository defines the interface for user repository operations
 type UserRepository interface {
-	Save(u User) (int64, error)
-	GetByEmail(email string) (*User, bool, error)
+	Save(ctx context.Context, u User) (string, error)
+	GetByEmail(ctx context.Context, email string) (*User, bool, error)
 }

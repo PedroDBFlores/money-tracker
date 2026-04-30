@@ -1,11 +1,14 @@
 package service
 
-import "money-tracker/api/internal/user"
+import (
+	"context"
+	"money-tracker/api/internal/user"
+)
 
 type CreateUser struct {
 	repo user.UserRepository
 }
 
-func (c *CreateUser) Execute(user user.User) (int64, error) {
-	return c.repo.Save(user)
+func (c *CreateUser) Execute(ctx context.Context, user user.User) (string, error) {
+	return c.repo.Save(ctx, user)
 }
